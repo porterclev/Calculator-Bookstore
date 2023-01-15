@@ -4,18 +4,23 @@ from ArrayQueue import ArrayQueue
 from Interfaces import Queue
 
 
-
-def left(i : int):
-    if i< 0: raise IndexError()
+def left(i: int):
+    if i < 0:
+        raise IndexError()
     return 2*i + 1
 
+
 def right(i: int):
-    if i< 0: raise IndexError()
+    if i < 0:
+        raise IndexError()
     return 2*(i+1)
 
-def parent(i : int):
-    if i< 0: raise IndexError()
+
+def parent(i: int):
+    if i < 0:
+        raise IndexError()
     return (i-1)//2
+
 
 class BinaryHeap(Queue):
     def __init__(self):
@@ -23,8 +28,8 @@ class BinaryHeap(Queue):
         self.n = 0
         self.j = 0
 
-    def new_array(self, n: int) ->np.array:
-        return np.zeros(n, np.object)
+    def new_array(self, n: int) -> np.array:
+        return np.zeros(n, np.object_)
 
     def resize(self):
         b = self.new_array(max(1, 2 * self.n))
@@ -32,14 +37,14 @@ class BinaryHeap(Queue):
             b[i] = self.a[i]
         self.a = b
 
-    def add(self, x : object):
+    def add(self, x: object):
         if len(self.a) < self.n + 1:
             self.resize()
-            
+
         self.a[self.n] = x
-        self.n+=1
+        self.n += 1
         self.bubble_up(self.n - 1)
-        
+
         return True
 
     def bubble_up(self, i):
@@ -52,7 +57,7 @@ class BinaryHeap(Queue):
     def remove(self):
         x = self.a[0]
         self.a[0] = self.a[self.n - 1]
-        self.n-=1
+        self.n -= 1
         self.trickle_down(0)
         if 3 * self.n < len(self.a):
             self.resize()
@@ -72,13 +77,14 @@ class BinaryHeap(Queue):
                 l = left(i)
                 if l < self.n and self.a[l] < self.a[i]:
                     self.j = l
-                    
+
             if self.j >= 0:
                 self.a[self.j], self.a[i] = self.a[i], self.a[self.j]
             i = self.j
 
     def find_min(self):
-        if self.n == 0: raise IndexError()
+        if self.n == 0:
+            raise IndexError()
         return self.a[0]
 
     def size(self) -> int:
@@ -88,7 +94,7 @@ class BinaryHeap(Queue):
         s = "["
         for i in range(0, self.n):
             s += "%r" % self.a[(i + self.j) % len(self.a)]
-            if i  < self.n-1:
+            if i < self.n-1:
                 s += ","
         return s + "]"
 
@@ -107,4 +113,3 @@ class BinaryHeap(Queue):
 # print(h.remove())
 # print(h.remove())
 # print(h.remove())
-

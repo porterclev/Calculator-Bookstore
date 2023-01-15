@@ -9,7 +9,7 @@ class ArrayQueue(Queue):
         self.a = self.new_array(1)
 
     def new_array(self, n: int) -> np.array:
-        return np.zeros(n, np.object)
+        return np.zeros(n, np.object_)
 
     def resize(self):  # Modify
         b = self.new_array(max(1, 2 * self.n))
@@ -20,7 +20,7 @@ class ArrayQueue(Queue):
         self.a = b
         self.j = 0
 
-    def add(self, x: np.object):  # Modify
+    def add(self, x: np.object_):  # Modify
         if self.n + 1 > len(self.a):
             self.resize()
 
@@ -28,7 +28,7 @@ class ArrayQueue(Queue):
         self.n += 1
         return True
 
-    def remove(self) -> np.object:  # Modify
+    def remove(self) -> np.object_:  # Modify
         try:
             if self.n == 0:
                 raise Exception()
@@ -67,7 +67,6 @@ class ArrayQueue(Queue):
         return x
 
 
-
 # q = ArrayQueue()
 # q.add(1)
 # print(q)
@@ -93,4 +92,3 @@ class ArrayQueue(Queue):
 # # q.remove()
 # print(q)
 # print(q.n)
-

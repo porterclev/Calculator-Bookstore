@@ -15,34 +15,35 @@ class ArrayStack(Stack):
         print(s)
         print(len(s))
     """
+
     def __init__(self):
         self.a = self.new_array(1)
         self.n = 0
 
     def new_array(self, n: int) -> np.array:
-        return np.zeros(n, np.object)
-    
+        return np.zeros(n, np.object_)
+
     def resize(self):
         b = self.new_array(max(1, 2 * self.n))
         for i in range(self.n):
             b[i] = self.a[i]
         self.a = b
 
-    def get(self, i: int) -> np.object:  # Modify
+    def get(self, i: int) -> np.object_:  # Modify
         if i < 0 | i > self.n - 1:
             raise IndexError()
         else:
             return self.a[i]
-    
-    def set(self, i: int, x: np.object) -> object:  # Modify
+
+    def set(self, i: int, x: np.object_) -> object:  # Modify
         if i < 0 or i > self.n - 1:
             raise IndexError()
         else:
             y = self.a[i]
             self.a[i] = x
             return y
-    
-    def add(self, i: int, x: np.object):  # Modify
+
+    def add(self, i: int, x: np.object_):  # Modify
         try:
             if i < 0 or i > self.n + 1:
                 raise Exception
@@ -58,7 +59,7 @@ class ArrayStack(Stack):
         except Exception:
             raise IndexError()
 
-    def remove(self, i: int) -> np.object:  # Modify
+    def remove(self, i: int) -> np.object_:  # Modify
         try:
             if i < 0 or i > self.n - 1:
                 raise Exception
@@ -77,15 +78,15 @@ class ArrayStack(Stack):
         except Exception:
             raise IndexError()
 
-    def push(self, x: np.object):
+    def push(self, x: np.object_):
         self.add(self.n, x)
-    
-    def pop(self) -> np.object:
+
+    def pop(self) -> np.object_:
         return self.remove(self.n-1)
 
     def size(self):
         return self.n
-        
+
     def __str__(self) -> str:
         s = "["
         for i in range(0, self.n):

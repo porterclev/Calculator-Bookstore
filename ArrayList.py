@@ -7,10 +7,10 @@ class ArrayList(List):
         self.n = 0
         self.j = 0
         self.a = self.new_array(1)
-        
+
     def new_array(self, n: int) -> np.array:
-        return np.zeros(n, np.object)
-    
+        return np.zeros(n, np.object_)
+
     def resize(self):  # Modify
         b = self.new_array(max(1, 2 * self.n))
 
@@ -36,7 +36,7 @@ class ArrayList(List):
 
     def append(self, x: object):
         self.add(self.n, x)
-        
+
     def add(self, i: int, x: object):  # Modify
         try:
             if i < 0 or i > self.n:
@@ -49,16 +49,18 @@ class ArrayList(List):
                 self.j = (self.j - 1) % len(self.a)
 
                 for k in range(0, i):
-                    self.a[(self.j + k) % len(self.a)] = self.a[(self.j + k + 1) % len(self.a)]
+                    self.a[(self.j + k) % len(self.a)
+                           ] = self.a[(self.j + k + 1) % len(self.a)]
             else:
                 for k in range(self.n, i, -1):
-                    self.a[(self.j + k) % len(self.a)] = self.a[(self.j + k - 1) % len(self.a)]
+                    self.a[(self.j + k) % len(self.a)
+                           ] = self.a[(self.j + k - 1) % len(self.a)]
 
             self.a[(self.j + i) % len(self.a)] = x
             self.n += 1
         except Exception:
             raise IndexError()
-    
+
     def remove(self, i: int) -> object:  # Modify
         try:
             if i < 0 or i >= self.n:
@@ -68,12 +70,14 @@ class ArrayList(List):
 
             if i < self.n/2:
                 for k in range(i, 0, -1):
-                    self.a[(self.j + k) % len(self.a)] = self.a[(self.j + k - 1) % len(self.a)]
+                    self.a[(self.j + k) % len(self.a)
+                           ] = self.a[(self.j + k - 1) % len(self.a)]
 
                 self.j = (self.j + 1) % len(self.a)
             else:
                 for k in range(i, self.n - 1):
-                    self.a[(self.j + k) % len(self.a)] = self.a[(self.j + k + 1) % len(self.a)]
+                    self.a[(self.j + k) % len(self.a)
+                           ] = self.a[(self.j + k + 1) % len(self.a)]
 
             self.n -= 1
 

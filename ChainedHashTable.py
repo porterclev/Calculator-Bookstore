@@ -18,7 +18,7 @@ class ChainedHashTable(Set):
         self.n = 0
 
     def alloc_table(self, n: int):
-        t = np.zeros(n, dtype=np.object)
+        t = np.zeros(n, dtype=np.object_)
         for i in range(n):
             t[i] = self.dtype()
         return t
